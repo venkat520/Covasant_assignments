@@ -12,7 +12,7 @@ app.secret_key = os.urandom(24)
 
 
 llm = ChatMistralAI(
-    api_key=os.getenv("MISTRAL_API_KEY", "zycyPOcxBLJpE6Mxo9eWE3dTUMFaeW41"),  # Replace with your actual API key or use env variable
+    api_key=os.getenv("MISTRAL_API_KEY", "zycyPOcxBLJpE6Mxo9eWE3dTUMFaeW41"), 
     model="mistral-small-latest",
     temperature=0.7
 )
