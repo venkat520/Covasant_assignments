@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MistralAI Chatbot</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            background-color: #fef9f4;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: auto;
+            background-color: #fffaf3;
+            padding: 25px;
+            border: 1px solid #e3dac9;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #5c4b33;
+        }
+
+        .input-area {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #c8bba5;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #caa472;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #b78d5d;
+        }
+
+        .history ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .history li {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: #f2ebe2;
+        }
+
+        .human {
+            background-color: #e0f7fa;
+        }
+
+        .ai {
+            background-color: #fff3e0;
+            color: #795548;
+        }
+
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fcf8f2;
+            border: 1px solid #e6dccb;
+            border-radius: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MistralAI Chatbot</h1>
+        <form method="POST" class="input-area">
+            <input type="text" name="query" placeholder="Type your message..." required>
+            <button type="submit">Send</button>
+        </form>
+
+        <h2>Chat History</h2>
+        <div class="history">
+            <ul>
+                {% for message in chat_history %}
+                    <li class="{{ 'human' if message.type == 'human' else 'ai' }}">
+                        <strong>{{ 'You' if message.type == 'human' else 'AI' }}:</strong> {{ message.content }}
+                    </li>
+                {% else %}
+                    <li>No conversation history yet.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <h2>Response</h2>
+        <div class="response">
+            <p>{{ response|default("No response yet") }}</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 MistralAI Chatbot</p>
+    </footer>
+</body>
+</html>
